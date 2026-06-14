@@ -1,2 +1,3 @@
-# Login-Site
-Login Site Basic
+# Login Site
+
+Projeto de login feito com Flask e SQLite.
