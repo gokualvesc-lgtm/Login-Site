@@ -1,3 +1,4 @@
+#IMPORTAÇÕES
 import sqlite3, os
 from dotenv import load_dotenv
 from flask import Flask, request, render_template, session
@@ -7,9 +8,13 @@ load_dotenv()
 app = Flask(__name__)
 app.secret_key = os.getenv("SECRET_KEY")
 
+#PAGINA INICIAL
+
 @app.route('/')
 def home():
     return render_template('index.html')
+
+#CADASTROS
 
 @app.route("/cadastrar")
 def cadastrar():
@@ -29,6 +34,8 @@ def cadastrar_submited():
     conn.close()
 
     return render_template("login.html", message="Cadastro realizado com sucesso! Faça login.")
+
+#LOGINS
 
 @app.route("/login")
 def login():
@@ -51,6 +58,8 @@ def login_submited():
         return render_template("home.html", nome=session["nome"], id=session["user_id"])
 
     return render_template("login.html", message="Nome ou senha incorretos!")
+
+#ADMIN PART
 
 @app.route("/admin")
 def admin():
@@ -79,4 +88,5 @@ def admin_submited():
 
     return render_template("admin.html", message="Nome ou senha incorretos!")
 
+#INICIA O SERVIDOR
 app.run(debug=True)
