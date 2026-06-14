@@ -28,6 +28,10 @@ def cadastrar_submited():
         return render_template("cadastro.html", message="Nome e senha são obrigatórios!")
     conn = sqlite3.connect("usuarios.db")
     cursor = conn.cursor()
+    cursor.execute("SELECT * FROM usuarios WHERE nome = ?", (nome,))
+    result = cursor.fetchone()
+    if result:
+        return render_template("cadastro.html", message="Nome e senha são obrigatórios!")
     cursor.execute("INSERT INTO usuarios (nome, senha) VALUES (?, ?)", (nome, senha))
 
     conn.commit()
