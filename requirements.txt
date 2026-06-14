@@ -1,0 +1,4 @@
+python-doenv
+flask
+os
+sqlite3
